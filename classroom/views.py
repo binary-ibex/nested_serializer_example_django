@@ -19,7 +19,6 @@ class TeacherView(generics.ListAPIView):
 
 class StudentView(generics.ListAPIView):
     serializer_class = StudentSerializer
-    queryset = Student.objects.all()
 
     def get_queryset(self):
         
