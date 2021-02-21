@@ -7,11 +7,27 @@ from .serializer import TeacherSerializer, StudentSerializer
 
 class TeacherView(generics.ListAPIView):
     serializer_class = TeacherSerializer
-    queryset = Teacher.objects.all()
 
+    def get_queryset(self):
+        
+        try:
+            queryset = Teacher.objects.filter(id=self.kwargs['pk'])
+        except:
+            queryset = Teacher.objects.all()
+
+        return queryset
 
 class StudentView(generics.ListAPIView):
     serializer_class = StudentSerializer
     queryset = Student.objects.all()
+
+    def get_queryset(self):
+        
+        try:
+            queryset = Student.objects.filter(id=self.kwargs['pk'])
+        except:
+            queryset = Student.objects.all()
+
+        return queryset
 
 
